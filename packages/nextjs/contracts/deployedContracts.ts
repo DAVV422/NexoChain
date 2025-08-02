@@ -92,6 +92,37 @@ const deployedContracts = {
             {
               indexed: false,
               internalType: "uint256",
+              name: "netAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "commission",
+              type: "uint256",
+            },
+          ],
+          name: "FreelancerHired",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "jobId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "freelancer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
               name: "amount",
               type: "uint256",
             },
@@ -115,19 +146,13 @@ const deployedContracts = {
               type: "address",
             },
             {
-              indexed: true,
-              internalType: "address",
-              name: "freelancer",
-              type: "address",
-            },
-            {
               indexed: false,
               internalType: "uint256",
               name: "amount",
               type: "uint256",
             },
           ],
-          name: "JobCreated",
+          name: "VacancyCreated",
           type: "event",
         },
         {
@@ -157,21 +182,28 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "address",
-              name: "freelancer",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "freelancerAmount",
-              type: "uint256",
-            },
-          ],
-          name: "createJob",
+          inputs: [],
+          name: "createVacancy",
           outputs: [],
           stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "jobId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "freelancerAddress",
+              type: "address",
+            },
+          ],
+          name: "hireFreelancer",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
