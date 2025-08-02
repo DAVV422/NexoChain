@@ -34,6 +34,39 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // Get the deployed contract to interact with it after deploying.
   const jobEscrow = await hre.ethers.getContract<Contract>("JobEscrow", deployer);
   console.log("📄 JobEscrow contract deployed to:", await jobEscrow.getAddress());
+
+  // await deploy("DynamicNFT", {
+  //   from: deployer,
+  //   // No constructor arguments needed for your contract
+  //   args: [],
+  //   log: true,
+  //   autoMine: true,
+  // });
+
+  // const dynamicNFT = await hre.ethers.getContract("DynamicNFT", deployer);
+  // console.log("🎮 DynamicNFT deployed to:", await dynamicNFT.getAddress());
+
+  // await deploy("DynamicSoulboundNFT", {
+  //   from: deployer,
+  //   args: [], // El constructor no necesita argumentos
+  //   log: true,
+  //   autoMine: true,
+  // });
+
+  // const soulboundNFT = await hre.ethers.getContract<Contract>("DynamicSoulboundNFT", deployer);
+  // console.log("🔒 DynamicSoulboundNFT deployed to:", await soulboundNFT.getAddress());
+
+  await deploy("FreelancerNFT", {
+    from: deployer,
+    // No se necesitan argumentos para el constructor en este caso
+    args: [],
+    log: true,
+    autoMine: true,
+  });
+
+  // Obtener el contrato desplegado para interactuar con él
+  const freelancerNFT = await hre.ethers.getContract("FreelancerNFT", deployer);
+  console.log("📄 FreelancerNFT contract deployed to:", await freelancerNFT.getAddress());
 };
 export default deployYourContract;
 
