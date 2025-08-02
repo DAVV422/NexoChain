@@ -21,7 +21,7 @@ contract JobEscrow {
 
     // Mapeo de un ID de trabajo a su estructura de datos.
     mapping(uint256 => Job) public jobs;
-    uint256 public nextJobId = 0;
+    uint256 public nextJobId = 1;
 
     // --- ROLES DEL CONTRATO ---
     address public immutable arbiter; // El árbitro que resuelve disputas.
