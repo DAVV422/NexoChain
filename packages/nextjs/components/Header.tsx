@@ -3,9 +3,9 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { PrivyLoginButton } from "./PrivyLoginButton";
 // import { AuthButton } from "./wallet-connect";
 import { usePathname } from "next/navigation";
-import PrivyLoginButton from "./PrivyLoginButton";
 import { Code } from "lucide-react";
 import { hardhat } from "viem/chains";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
@@ -39,7 +39,7 @@ export const Header = () => {
             </Link>
           </nav>
           {/* <AuthButton /> */}
-          <div className="text-sm text-gray-600">Wallet Connect</div>
+          <PrivyLoginButton />
         </div>
       </div>
     </header>

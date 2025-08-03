@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
@@ -13,16 +14,27 @@ import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { useInitializeNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
+// Rutas que no necesitan header y footer
+const AUTH_ROUTES = ["/login", "/register", "/forgot-password"];
+
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
+  const pathname = usePathname();
+  const isAuthRoute = AUTH_ROUTES.includes(pathname);
 
   return (
     <>
-      <div className={`flex flex-col min-h-screen `}>
-        <Header />
-        <main className="relative flex flex-col flex-1">{children}</main>
-        <Footer />
-      </div>
+      {isAuthRoute ? (
+        // Para rutas de autenticación, solo el contenido sin header/footer
+        <div className="min-h-screen">{children}</div>
+      ) : (
+        // Para rutas normales, estructura completa con header y footer
+        <div className={`flex flex-col min-h-screen `}>
+          <Header />
+          <main className="relative flex flex-col flex-1">{children}</main>
+          <Footer />
+        </div>
+      )}
       <Toaster />
     </>
   );
