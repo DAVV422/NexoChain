@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Award, Briefcase, Coins, Search, Shield, Users } from "lucide-react";
 import { Badge } from "~~/components/ui/badge";
 import { Button } from "~~/components/ui/button";
+import { Header } from "~~/components/Header";
+import { Footer } from "~~/components/Footer";
+import { Toaster } from "~~/components/ui/toaster";
 import { Card, CardContent } from "~~/components/ui/card";
 
 export default function HomePage() {
@@ -32,6 +35,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Header />
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4">
@@ -146,6 +150,8 @@ export default function HomePage() {
           <div className="text-white text-lg">Wallet Connect (Temporalmente deshabilitado)</div>
         </div>
       </section>
+      <Footer />
+      <Toaster />
     </div>
   );
 }
