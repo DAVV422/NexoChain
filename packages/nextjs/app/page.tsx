@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { Award, Briefcase, Code, Coins, Search, Shield, Users } from "lucide-react";
+import { Award, Briefcase, Coins, Search, Shield, Users } from "lucide-react";
 import { Badge } from "~~/components/ui/badge";
 import { Button } from "~~/components/ui/button";
 import { Card, CardContent } from "~~/components/ui/card";
@@ -52,13 +50,13 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Button size="lg" className="text-lg px-8" asChild>
-                <Link href="/jobs">
+                <Link href="/freelancer">
                   <Search className="mr-2 h-5 w-5" />
                   Explorar Trabajos
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent" asChild>
-                <Link href="/publish">
+                <Link href="/employer">
                   <Briefcase className="mr-2 h-5 w-5" />
                   Publicar Trabajo
                 </Link>
