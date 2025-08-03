@@ -1,72 +1,45 @@
 "use client";
 
-import Link from "next/link";
-import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { usePrivy } from "@privy-io/react-auth";
+import { BlockieAvatar } from "~~/components/scaffold-eth";
 
-const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
+/**
+ * Componente para el botón de Login/Logout con Privy.
+ */
+export const HomePage = () => {
+  const router = useRouter();
+  const { ready, authenticated, user, logout } = usePrivy();
+
+  // Espera a que el SDK de Privy esté listo antes de renderizar nada.
+  if (!ready) {
+    return null;
+  }
 
   return (
     <>
-      <div className="flex items-center flex-col grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
-          </h1>
-          <div className="flex justify-center items-center space-x-2 flex-col">
-            <p className="my-2 font-medium">Connected Address:</p>
-            <Address address={connectedAddress} />
+      {authenticated ? (
+        // Si el usuario está autenticado, muestra su dirección y un botón de Logout.
+        <div className="flex items-center gap-3">
+          <div className="flex flex-col items-end">
+            <span className="text-sm font-bold">
+              {/* Muestra la dirección acortada de la billetera */}
+              {user?.wallet?.address.slice(0, 6)}...{user?.wallet?.address.slice(-4)}
+            </span>
+            <button className="text-xs hover:underline" onClick={logout}>
+              Logout
+            </button>
           </div>
-
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
+          {/* Usa el componente de avatar de Scaffold-ETH para consistencia visual */}
+          {user?.wallet?.address && <BlockieAvatar address={user.wallet.address} size={30} />}
         </div>
-
-        <div className="grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col md:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      ) : (
+        // Si el usuario no está autenticado, muestra el botón de Login.
+        <button className="btn btn-primary btn-sm" onClick={() => router.push("/login")}>
+          Login
+        </button>
+      )}
     </>
   );
 };
-
-export default Home;
