@@ -17,6 +17,9 @@ contract JobEscrow {
         address freelancer;    // La dirección del freelancer (es 0x0 hasta que se contrata a alguien).
         uint256 amount;        // El monto en garantía (bruto al inicio, neto después de la comisión).
         JobState state;        // El estado actual del trabajo.
+        string description;    // Descripción de la vacante.
+        string[] skills;       // Habilidades requeridas para la vacante.
+        string imageURI;       // URI de la imagen para la vacante.
     }
 
     // Mapeo de un ID de trabajo a su estructura de datos.
@@ -30,7 +33,7 @@ contract JobEscrow {
 
 
     // --- EVENTOS (Actualizados para el nuevo flujo) ---
-    event VacancyCreated(uint256 indexed jobId, address indexed employer, uint256 amount);
+    event VacancyCreated(uint256 indexed jobId, address indexed employer, uint256 amount, string description, string[] skills, string imageURI);
     event FreelancerHired(uint256 indexed jobId, address indexed freelancer, uint256 netAmount, uint256 commission);
     event FundsReleased(uint256 indexed jobId, address indexed freelancer, uint256 amount);
     event DisputeRaised(uint256 indexed jobId, address indexed raisedBy);
@@ -53,17 +56,20 @@ contract JobEscrow {
      * @dev PASO 2: Nueva función para crear una vacante (antes createJob).
      * El empleador deposita el monto bruto. No se asigna freelancer ni se cobra comisión aún.
      */
-    function createVacancy() public payable {
+    function createVacancy(string memory _description, string[] memory _skills, string memory _imageURI) public payable {
         require(msg.value > 0, "El monto de la vacante debe ser mayor a cero.");
 
         jobs[nextJobId] = Job({
             employer: msg.sender,
             freelancer: address(0), // El freelancer se asignará después.
             amount: msg.value,      // Se guarda el monto bruto depositado.
-            state: JobState.Open    // El trabajo está abierto para postulaciones.
+            state: JobState.Open,    // El trabajo está abierto para postulaciones.
+            description: _description,
+            skills: _skills,
+            imageURI: _imageURI
         });
 
-        emit VacancyCreated(nextJobId, msg.sender, msg.value);
+        emit VacancyCreated(nextJobId, msg.sender, msg.value, _description, _skills, _imageURI);
         nextJobId++;
     }
 
