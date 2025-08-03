@@ -46,10 +46,10 @@ La interfaz de usuario está construida con **React y Hardhat Scaffold**, y se d
 
 Una vez que los contratos han sido desplegados y verificados en una red de prueba (testnet) o en la red principal (mainnet), sus hashes de transacción y direcciones son los siguientes:
 
-| Nombre del Contrato | Dirección del Contrato            | Hash de la Transacción de Despliegue  |
-|---------------------|------------------------------------|----------------------------------------|
-| JobEscrow           | [PEGA AQUI LA DIRECCION DEL CONTRATO] | [PEGA AQUI EL HASH DE LA TRANSACCION] |
-| FreelancerNFT       | [PEGA AQUI LA DIRECCION DEL CONTRATO] | [PEGA AQUI EL HASH DE LA TRANSACCION] |
+| Nombre del Contrato | Dirección del Contrato                                                         | Hash de la Transacción de Despliegue       |
+|---------------------|--------------------------------------------------------------------------------|--------------------------------------------|
+| JobEscrow           | https://sepolia.arbiscan.io/address/0x2ebBC9D15FDBfD09A308A7A9231c202659a99ab3 | 0x2ebBC9D15FDBfD09A308A7A9231c202659a99ab3 |
+| FreelancerNFT       | https://sepolia.arbiscan.io/address/0xf951009DFB9797d63FFD950D78566C0CcF15974f | 0xf951009DFB9797d63FFD950D78566C0CcF15974f |
 
 ---
 
