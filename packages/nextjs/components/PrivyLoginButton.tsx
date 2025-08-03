@@ -11,12 +11,12 @@ import { BlockieAvatar } from "~~/components/scaffold-eth";
 export function PrivyLoginButton() {
   const router = useRouter();
   const { ready, authenticated, user, logout } = usePrivy();
+  console.log("PrivyLoginButton render", { ready, authenticated, user });
 
   // Espera a que el SDK de Privy esté listo antes de renderizar nada.
   if (!ready) {
     return null;
   }
-
   return (
     <>
       {authenticated ? (
