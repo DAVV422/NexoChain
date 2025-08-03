@@ -1,80 +1,155 @@
-# 🏗 Scaffold-ETH 2
+# Solwage: Una plataforma de freelance descentralizada
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Descripción del Proyecto
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+**Solwage** es una plataforma de freelance descentralizada construida sobre la blockchain. Su objetivo es conectar a empleadores y freelancers de manera segura y transparente, eliminando la necesidad de intermediarios.  
+El corazón del sistema es un contrato inteligente de **escrow** que gestiona los pagos, garantizando que los fondos del empleador se retengan hasta que el freelancer complete el trabajo, y que el freelancer reciba su pago de forma automática.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+El proyecto también incluye un **NFT (Non-Fungible Token)** de Freelancer que actúa como un perfil digital en la blockchain. Este NFT almacena datos importantes como la reputación, los trabajos completados y las habilidades del freelancer, proporcionando un historial verificable y a prueba de manipulaciones.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+La plataforma aborda el problema de la confianza en el mercado freelance tradicional, donde a menudo surgen disputas de pago o preocupaciones sobre la calidad del trabajo. Con **JobEscrow**, el proceso está mediado por un árbitro neutral, y las reglas del acuerdo se aplican de forma automática a través del contrato inteligente.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+---
 
-## Requirements
+## Funcionalidades Principales
 
-Before you begin, you need to install the following tools:
+El proyecto se compone de dos **contratos inteligentes principales** y una **interfaz de usuario (DApp)** que interactúa con ellos.
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+### Contratos Inteligentes
 
-## Quickstart
+#### JobEscrow
 
-To get started with Scaffold-ETH 2, follow the steps below:
+- **Creación de Vacantes**: Los empleadores pueden publicar nuevas ofertas de trabajo, especificando una descripción, las habilidades requeridas y el monto del pago. Los fondos se depositan en un escrow en el momento de la publicación.
+- **Contratación de Freelancers**: Un empleador puede contratar a un freelancer para una vacante abierta.
+- **Liberación de Fondos**: El empleador puede liberar el pago al freelancer una vez que el trabajo se ha completado satisfactoriamente.
+- **Manejo de Disputas**: Tanto el empleador como el freelancer pueden iniciar una disputa si no llegan a un acuerdo. Un árbitro predefinido es el responsable de resolver la disputa, decidiendo cómo se distribuyen los fondos.
+- **Comisión de Plataforma**: Se cobra una pequeña comisión por cada trabajo completado, que se destina al propietario de la plataforma.
 
-1. Install dependencies if it was skipped in CLI:
+#### FreelancerNFT
 
+- **Creación de Perfiles NFT**: Los freelancers pueden acuñar un NFT que representa su perfil profesional en la plataforma.
+- **Actualización de Perfil**: El NFT almacena metadatos (como el URI de la imagen y las habilidades) que pueden ser actualizados por el propietario del token.
+- **Estadísticas Verificables**: El NFT registra automáticamente el número de trabajos completados y las ganancias totales, creando un historial de trabajo confiable.
+
+---
+
+### Interfaz de Usuario (DApp)
+
+La interfaz de usuario está construida con **React y Hardhat Scaffold**, y se divide en dos paneles principales para una mejor experiencia:
+
+- **Dashboard de Empleador**: Permite a los empleadores crear nuevas vacantes de trabajo, ver el estado de sus ofertas y gestionar los pagos o disputas de los proyectos en curso.
+- **Mercado de Freelancers**: Una sección donde los freelancers pueden explorar todas las vacantes de trabajo disponibles, ver los detalles y postularse.
+
+---
+
+## Contratos Desplegados
+
+Una vez que los contratos han sido desplegados y verificados en una red de prueba (testnet) o en la red principal (mainnet), sus hashes de transacción y direcciones son los siguientes:
+
+| Nombre del Contrato | Dirección del Contrato            | Hash de la Transacción de Despliegue  |
+|---------------------|------------------------------------|----------------------------------------|
+| JobEscrow           | [PEGA AQUI LA DIRECCION DEL CONTRATO] | [PEGA AQUI EL HASH DE LA TRANSACCION] |
+| FreelancerNFT       | [PEGA AQUI LA DIRECCION DEL CONTRATO] | [PEGA AQUI EL HASH DE LA TRANSACCION] |
+
+---
+
+## Exportar a Hojas de Cálculo
+
+---
+
+## Configuración y Despliegue (Hardhat)
+
+### Requisitos
+
+Asegúrate de tener instalados **Node.js**, **npm** y **Hardhat**.
+
+### Pasos
+
+#### Clonar el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/nombre-del-repo.git
+cd nombre-del-repo
 ```
-cd my-dapp-example
-yarn install
+
+#### Instalar dependencias:
+
+```bash
+npm install
 ```
 
-2. Run a local network in the first terminal:
+#### Compilar los contratos:
 
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
+```bash
+npm run compile
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+#### Desplegar en una red local:
 
-4. On a third terminal, start your NextJS app:
+Puedes usar un nodo local de Hardhat.
 
+```bash
+npm run chain
 ```
-yarn start
+
+En una nueva terminal:
+
+```bash
+npm run deploy
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Los contratos se desplegarán en la red local y sus direcciones se guardarán automáticamente.
 
-Run smart contract test with `yarn hardhat:test`
+#### Ejecutar la DApp:
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+```bash
+npm start
+```
+
+Tu aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+
+---
+
+### Desplegar en una red de prueba (testnet)
+
+Para desplegar en una testnet como **Sepolia**, configura las variables de entorno con tu clave privada y un endpoint de Alchemy o Infura. Luego, ejecuta:
+
+```bash
+npm run deploy -- --network sepolia
+```
+
+---
+
+### Verificación de Contratos
+
+Para verificar tus contratos en **Etherscan**, usa el comando:
+
+```bash
+npm run verify -- --network sepolia
+```
 
 
-## Documentation
+---
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+## Tecnologías Utilizadas
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+El proyecto Solwage integra múltiples tecnologías modernas del ecosistema Web3 y de desarrollo frontend:
 
-## Contributing to Scaffold-ETH 2
+- **Arbitrum**: Red de capa 2 (Layer 2) basada en Ethereum que permite transacciones más rápidas y económicas. Los contratos inteligentes están desplegados en esta red para optimizar costos de gas.
 
-We welcome contributions to Scaffold-ETH 2!
+- **Scaffold-ETH**: Kit de desarrollo que proporciona una plantilla rápida y flexible para construir DApps, incluyendo componentes React preconfigurados, hooks de Ethereum y soporte para pruebas y despliegue con Hardhat.
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+- **Hardhat**: Framework para desarrollo, compilación, pruebas y despliegue de contratos inteligentes en Solidity. Se utiliza tanto en entornos locales como en testnets/mainnet.
+
+- **React**: Biblioteca JavaScript para construir interfaces de usuario reactivas. Es la base del frontend de la plataforma Solwage.
+
+- **Solidity**: Lenguaje de programación utilizado para escribir los contratos inteligentes que gobiernan el comportamiento de la plataforma.
+
+- **Ethers.js**: Librería de JavaScript utilizada para interactuar con la blockchain desde el frontend.
+
+- **IPFS o servicios similares (opcional)**: Posibles soluciones para almacenar metadatos de los NFTs como imágenes y descripciones, garantizando descentralización.
+
+- **Etherscan & Sourcify**: Herramientas para la verificación y auditoría pública de contratos inteligentes.
+
+---
+
