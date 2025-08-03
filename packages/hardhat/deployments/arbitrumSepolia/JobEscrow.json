@@ -1,0 +1,529 @@
+{
+  "address": "0x2ebBC9D15FDBfD09A308A7A9231c202659a99ab3",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_arbiter",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_platformOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "_commissionPercentage",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "raisedBy",
+          "type": "address"
+        }
+      ],
+      "name": "DisputeRaised",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "freelancerAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "employerAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "DisputeResolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "freelancer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "netAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "commission",
+          "type": "uint256"
+        }
+      ],
+      "name": "FreelancerHired",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "freelancer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundsReleased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "employer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string[]",
+          "name": "skills",
+          "type": "string[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "imageURI",
+          "type": "string"
+        }
+      ],
+      "name": "VacancyCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "arbiter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "commissionPercentage",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "_skills",
+          "type": "string[]"
+        },
+        {
+          "internalType": "string",
+          "name": "_imageURI",
+          "type": "string"
+        }
+      ],
+      "name": "createVacancy",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "freelancerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "hireFreelancer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "jobs",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "employer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "freelancer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum JobEscrow.JobState",
+          "name": "state",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "imageURI",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nextJobId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "platformOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "raiseDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseFunds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "jobId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "freelancerPercentage",
+          "type": "uint8"
+        }
+      ],
+      "name": "resolveDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x5695e9fc761bf2114002d2f56f8efe73609e6a119f3409fa1e5e62cff37212fe",
+  "receipt": {
+    "to": null,
+    "from": "0x441F0779191e5caddA1807A7E132A34e8c90DC52",
+    "contractAddress": "0x2ebBC9D15FDBfD09A308A7A9231c202659a99ab3",
+    "transactionIndex": 1,
+    "gasUsed": "1263712",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x95e7d8a039faa6e73b51782ee1ae7a635709058518ec9fd64baa20e8ebe412ff",
+    "transactionHash": "0x5695e9fc761bf2114002d2f56f8efe73609e6a119f3409fa1e5e62cff37212fe",
+    "logs": [],
+    "blockNumber": 180233538,
+    "cumulativeGasUsed": "1263712",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x55a6bB17Bf4540011b62AC8bDcB9AA520D0EC7CA",
+    "0x770A05F454475AeDbF8Ab13856c1Aa71a46f1163",
+    3
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "0926679cf367df68b3b5bdd8f18b2fc4",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_arbiter\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_platformOwner\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"_commissionPercentage\",\"type\":\"uint8\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"raisedBy\",\"type\":\"address\"}],\"name\":\"DisputeRaised\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"freelancerAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"employerAmount\",\"type\":\"uint256\"}],\"name\":\"DisputeResolved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"freelancer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"netAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"commission\",\"type\":\"uint256\"}],\"name\":\"FreelancerHired\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"freelancer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FundsReleased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"employer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string[]\",\"name\":\"skills\",\"type\":\"string[]\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"imageURI\",\"type\":\"string\"}],\"name\":\"VacancyCreated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"arbiter\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"commissionPercentage\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_skills\",\"type\":\"string[]\"},{\"internalType\":\"string\",\"name\":\"_imageURI\",\"type\":\"string\"}],\"name\":\"createVacancy\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"freelancerAddress\",\"type\":\"address\"}],\"name\":\"hireFreelancer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"jobs\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"employer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"freelancer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"enum JobEscrow.JobState\",\"name\":\"state\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imageURI\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nextJobId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"raiseDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"}],\"name\":\"releaseFunds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"jobId\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"freelancerPercentage\",\"type\":\"uint8\"}],\"name\":\"resolveDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Este contrato gestiona un dep\\u00f3sito en garant\\u00eda (escrow) para trabajos entre un empleador y un freelancer, con un \\u00e1rbitro y una comisi\\u00f3n para la plataforma.\",\"kind\":\"dev\",\"methods\":{\"constructor\":{\"details\":\"El constructor no cambia. Define los roles al desplegar el contrato.\"},\"createVacancy(string,string[],string)\":{\"details\":\"PASO 2: Nueva funci\\u00f3n para crear una vacante (antes createJob). El empleador deposita el monto bruto. No se asigna freelancer ni se cobra comisi\\u00f3n a\\u00fan.\"},\"hireFreelancer(uint256,address)\":{\"details\":\"PASO 3: Nueva funci\\u00f3n para que el empleador contrate a un freelancer para una vacante abierta. En este paso se cobra la comisi\\u00f3n de la plataforma.\",\"params\":{\"freelancerAddress\":\"La direcci\\u00f3n del freelancer que se va a contratar.\",\"jobId\":\"El ID de la vacante a la que se asignar\\u00e1 el freelancer.\"}},\"raiseDispute(uint256)\":{\"details\":\"Inicia una disputa. Ahora se puede disputar tambi\\u00e9n un trabajo en estado 'Open'.\"},\"releaseFunds(uint256)\":{\"details\":\"Libera los fondos (netos) al freelancer. La l\\u00f3gica interna no cambia.\"},\"resolveDispute(uint256,uint8)\":{\"details\":\"Resuelve una disputa. La l\\u00f3gica opera sobre el monto en escrow en ese momento.\"}},\"title\":\"JobEscrow\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/JobScrow.sol\":\"JobEscrow\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/JobScrow.sol\":{\"content\":\"\\r\\n// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.20;\\r\\n\\r\\n/**\\r\\n * @title JobEscrow\\r\\n * @dev Este contrato gestiona un dep\\u00f3sito en garant\\u00eda (escrow) para trabajos entre\\r\\n * un empleador y un freelancer, con un \\u00e1rbitro y una comisi\\u00f3n para la plataforma.\\r\\n */\\r\\ncontract JobEscrow {\\r\\n    // PASO 1: Se a\\u00f1ade el estado 'Open' para las vacantes sin freelancer asignado.\\r\\n    enum JobState { Open, InProgress, Completed, Disputed, Resolved }\\r\\n\\r\\n    // Estructura para almacenar los detalles de cada trabajo.\\r\\n    struct Job {\\r\\n        address employer;      // La direcci\\u00f3n del empleador.\\r\\n        address freelancer;    // La direcci\\u00f3n del freelancer (es 0x0 hasta que se contrata a alguien).\\r\\n        uint256 amount;        // El monto en garant\\u00eda (bruto al inicio, neto despu\\u00e9s de la comisi\\u00f3n).\\r\\n        JobState state;        // El estado actual del trabajo.\\r\\n        string description;    // Descripci\\u00f3n de la vacante.\\r\\n        string[] skills;       // Habilidades requeridas para la vacante.\\r\\n        string imageURI;       // URI de la imagen para la vacante.\\r\\n    }\\r\\n\\r\\n    // Mapeo de un ID de trabajo a su estructura de datos.\\r\\n    mapping(uint256 => Job) public jobs;\\r\\n    uint256 public nextJobId = 1;\\r\\n\\r\\n    // --- ROLES DEL CONTRATO ---\\r\\n    address public immutable arbiter; \\r\\n    address public immutable platformOwner;\\r\\n    uint8 public immutable commissionPercentage;\\r\\n\\r\\n\\r\\n    // --- EVENTOS (Actualizados para el nuevo flujo) ---\\r\\n    event VacancyCreated(uint256 indexed jobId, address indexed employer, uint256 amount, string description, string[] skills, string imageURI);\\r\\n    event FreelancerHired(uint256 indexed jobId, address indexed freelancer, uint256 netAmount, uint256 commission);\\r\\n    event FundsReleased(uint256 indexed jobId, address indexed freelancer, uint256 amount);\\r\\n    event DisputeRaised(uint256 indexed jobId, address indexed raisedBy);\\r\\n    event DisputeResolved(uint256 indexed jobId, uint256 freelancerAmount, uint256 employerAmount);\\r\\n\\r\\n    /**\\r\\n     * @dev El constructor no cambia. Define los roles al desplegar el contrato.\\r\\n     */\\r\\n    constructor(address _arbiter, address _platformOwner, uint8 _commissionPercentage) {\\r\\n        require(_arbiter != address(0), \\\"La direccion del arbitro no puede ser la direccion cero.\\\");\\r\\n        require(_platformOwner != address(0), \\\"La direccion del dueno de la plataforma no puede ser la direccion cero.\\\");\\r\\n        require(_commissionPercentage < 100, \\\"La comision debe ser menor al 100%.\\\");\\r\\n        \\r\\n        arbiter = _arbiter;\\r\\n        platformOwner = _platformOwner;\\r\\n        commissionPercentage = _commissionPercentage;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev PASO 2: Nueva funci\\u00f3n para crear una vacante (antes createJob).\\r\\n     * El empleador deposita el monto bruto. No se asigna freelancer ni se cobra comisi\\u00f3n a\\u00fan.\\r\\n     */\\r\\n    function createVacancy(string memory _description, string[] memory _skills, string memory _imageURI) public payable {\\r\\n        require(msg.value > 0, \\\"El monto de la vacante debe ser mayor a cero.\\\");\\r\\n\\r\\n        jobs[nextJobId] = Job({\\r\\n            employer: msg.sender,\\r\\n            freelancer: address(0), // El freelancer se asignar\\u00e1 despu\\u00e9s.\\r\\n            amount: msg.value,      // Se guarda el monto bruto depositado.\\r\\n            state: JobState.Open,    // El trabajo est\\u00e1 abierto para postulaciones.\\r\\n            description: _description,\\r\\n            skills: _skills,\\r\\n            imageURI: _imageURI\\r\\n        });\\r\\n\\r\\n        emit VacancyCreated(nextJobId, msg.sender, msg.value, _description, _skills, _imageURI);\\r\\n        nextJobId++;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev PASO 3: Nueva funci\\u00f3n para que el empleador contrate a un freelancer para una vacante abierta.\\r\\n     * En este paso se cobra la comisi\\u00f3n de la plataforma.\\r\\n     * @param jobId El ID de la vacante a la que se asignar\\u00e1 el freelancer.\\r\\n     * @param freelancerAddress La direcci\\u00f3n del freelancer que se va a contratar.\\r\\n     */\\r\\n    function hireFreelancer(uint256 jobId, address freelancerAddress) public {\\r\\n        Job storage job = jobs[jobId];\\r\\n\\r\\n        require(msg.sender == job.employer, \\\"Solo el empleador puede contratar.\\\");\\r\\n        require(job.state == JobState.Open, \\\"La vacante no esta abierta.\\\");\\r\\n        require(freelancerAddress != address(0), \\\"La direccion del freelancer es invalida.\\\");\\r\\n\\r\\n        // --- L\\u00d3GICA DE LA COMISI\\u00d3N (se ejecuta aqu\\u00ed) ---\\r\\n        uint256 grossAmount = job.amount;\\r\\n        uint256 commissionAmount = (grossAmount * commissionPercentage) / 100;\\r\\n        uint256 netAmount = grossAmount - commissionAmount;\\r\\n\\r\\n        // Se transfiere la comisi\\u00f3n a la plataforma.\\r\\n        (bool success, ) = platformOwner.call{value: commissionAmount}(\\\"\\\");\\r\\n        require(success, \\\"Fallo al transferir la comision a la plataforma.\\\");\\r\\n\\r\\n        // Se actualiza el trabajo con los nuevos datos.\\r\\n        job.freelancer = freelancerAddress;\\r\\n        job.amount = netAmount; // El monto en escrow ahora es el neto para el freelancer.\\r\\n        job.state = JobState.InProgress;\\r\\n\\r\\n        emit FreelancerHired(jobId, freelancerAddress, netAmount, commissionAmount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Libera los fondos (netos) al freelancer. La l\\u00f3gica interna no cambia.\\r\\n     */\\r\\n    function releaseFunds(uint256 jobId) public {\\r\\n        Job storage job = jobs[jobId];\\r\\n        require(msg.sender == job.employer, \\\"Solo el empleador puede liberar los fondos.\\\");\\r\\n        require(job.state == JobState.InProgress, \\\"El trabajo no esta en progreso.\\\");\\r\\n\\r\\n        job.state = JobState.Completed;\\r\\n        (bool success, ) = job.freelancer.call{value: job.amount}(\\\"\\\");\\r\\n        require(success, \\\"Fallo al enviar el Ether al freelancer.\\\");\\r\\n\\r\\n        emit FundsReleased(jobId, job.freelancer, job.amount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Inicia una disputa. Ahora se puede disputar tambi\\u00e9n un trabajo en estado 'Open'.\\r\\n     */\\r\\n    function raiseDispute(uint256 jobId) public {\\r\\n        Job storage job = jobs[jobId];\\r\\n        require(msg.sender == job.employer || msg.sender == job.freelancer, \\\"Solo las partes involucradas pueden disputar.\\\");\\r\\n        // Se puede disputar mientras el trabajo est\\u00e9 en progreso. Si est\\u00e1 'Open', el empleador puede querer cancelar.\\r\\n        require(job.state == JobState.InProgress || job.state == JobState.Open, \\\"El trabajo no esta en un estado disputable.\\\");\\r\\n\\r\\n        job.state = JobState.Disputed;\\r\\n        emit DisputeRaised(jobId, msg.sender);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Resuelve una disputa. La l\\u00f3gica opera sobre el monto en escrow en ese momento.\\r\\n     */\\r\\n    function resolveDispute(uint256 jobId, uint8 freelancerPercentage) public {\\r\\n        require(msg.sender == arbiter, \\\"Solo el arbitro puede resolver disputas.\\\");\\r\\n        require(freelancerPercentage <= 100, \\\"El porcentaje no puede ser mayor a 100.\\\");\\r\\n\\r\\n        Job storage job = jobs[jobId];\\r\\n        require(job.state == JobState.Disputed, \\\"El trabajo no esta en disputa.\\\");\\r\\n\\r\\n        job.state = JobState.Resolved;\\r\\n\\r\\n        uint256 totalAmountInEscrow = job.amount;\\r\\n        uint256 freelancerAmount = (totalAmountInEscrow * freelancerPercentage) / 100;\\r\\n        uint256 employerAmount = totalAmountInEscrow - freelancerAmount;\\r\\n\\r\\n        // Si el trabajo estaba en estado 'Open', no hay freelancer a quien pagar.\\r\\n        // El \\u00e1rbitro decide si el 100% vuelve al empleador.\\r\\n        if (freelancerAmount > 0 && job.freelancer != address(0)) {\\r\\n            (bool success, ) = job.freelancer.call{value: freelancerAmount}(\\\"\\\");\\r\\n            require(success, \\\"Fallo al enviar el Ether al freelancer.\\\");\\r\\n        }\\r\\n\\r\\n        if (employerAmount > 0) {\\r\\n            (bool success, ) = job.employer.call{value: employerAmount}(\\\"\\\");\\r\\n            require(success, \\\"Fallo al enviar el Ether al empleador.\\\");\\r\\n        }\\r\\n\\r\\n        emit DisputeResolved(jobId, freelancerAmount, employerAmount);\\r\\n    }\\r\\n}\",\"keccak256\":\"0x261471d93e852974d8ab733ac5409c9953b8da64ea0ca13281c91127ed462154\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60e0604052600180553480156200001557600080fd5b50604051620017d3380380620017d38339810160408190526200003891620001e5565b6001600160a01b038316620000ba5760405162461bcd60e51b815260206004820152603860248201527f4c6120646972656363696f6e2064656c206172626974726f206e6f207075656460448201527f6520736572206c6120646972656363696f6e206365726f2e000000000000000060648201526084015b60405180910390fd5b6001600160a01b038216620001485760405162461bcd60e51b815260206004820152604760248201527f4c6120646972656363696f6e2064656c206475656e6f206465206c6120706c6160448201527f7461666f726d61206e6f20707565646520736572206c6120646972656363696f606482015266371031b2b9379760c91b608482015260a401620000b1565b60648160ff1610620001a95760405162461bcd60e51b815260206004820152602360248201527f4c6120636f6d6973696f6e206465626520736572206d656e6f7220616c20313060448201526218129760e91b6064820152608401620000b1565b6001600160a01b03928316608052911660a05260ff1660c05262000238565b80516001600160a01b0381168114620001e057600080fd5b919050565b600080600060608486031215620001fb57600080fd5b6200020684620001c8565b92506200021660208501620001c8565b9150604084015160ff811681146200022d57600080fd5b809150509250925092565b60805160a05160c0516115566200027d600039600081816101c801526109e30152600081816101050152610a2701526000818161022e0152610b8501526115566000f3fe6080604052600436106100915760003560e01c8063b0c2aa5e11610059578063b0c2aa5e14610172578063b0f26f1814610196578063d575fe64146101b6578063e55e4211146101fc578063fe25e00a1461021c57600080fd5b8063180aedf3146100965780634d68282f146100d15780634df8ccb1146100f35780639fb048c81461013f578063a5c1674e14610152575b600080fd5b3480156100a257600080fd5b506100b66100b1366004610f74565b610250565b6040516100c896959493929190610fe9565b60405180910390f35b3480156100dd57600080fd5b506100f16100ec366004610f74565b6103a8565b005b3480156100ff57600080fd5b506101277f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020016100c8565b6100f161014d366004611114565b61056a565b34801561015e57600080fd5b506100f161016d366004610f74565b61071e565b34801561017e57600080fd5b5061018860015481565b6040519081526020016100c8565b3480156101a257600080fd5b506100f16101b136600461121d565b610892565b3480156101c257600080fd5b506101ea7f000000000000000000000000000000000000000000000000000000000000000081565b60405160ff90911681526020016100c8565b34801561020857600080fd5b506100f1610217366004611259565b610b7a565b34801561022857600080fd5b506101277f000000000000000000000000000000000000000000000000000000000000000081565b600060208190529081526040902080546001820154600283015460038401546004850180546001600160a01b03958616969490951694929360ff9092169261029790611284565b80601f01602080910402602001604051908101604052809291908181526020018280546102c390611284565b80156103105780601f106102e557610100808354040283529160200191610310565b820191906000526020600020905b8154815290600101906020018083116102f357829003601f168201915b50505050509080600601805461032590611284565b80601f016020809104026020016040519081016040528092919081815260200182805461035190611284565b801561039e5780601f106103735761010080835404028352916020019161039e565b820191906000526020600020905b81548152906001019060200180831161038157829003601f168201915b5050505050905086565b600081815260208190526040902080546001600160a01b031633146104285760405162461bcd60e51b815260206004820152602b60248201527f536f6c6f20656c20656d706c6561646f72207075656465206c6962657261722060448201526a3637b9903337b73237b99760a91b60648201526084015b60405180910390fd5b6001600382015460ff16600481111561044357610443610f8d565b146104905760405162461bcd60e51b815260206004820152601f60248201527f456c2074726162616a6f206e6f206573746120656e2070726f677265736f2e00604482015260640161041f565b60038101805460ff191660029081179091556001820154908201546040516000926001600160a01b031691908381818185875af1925050503d80600081146104f4576040519150601f19603f3d011682016040523d82523d6000602084013e6104f9565b606091505b505090508061051a5760405162461bcd60e51b815260040161041f906112be565b600182015460028301546040519081526001600160a01b039091169084907f6e3c6096795c8298a218b2cfb8bde42726ff7c9a3d27b4d3ba41ab7f74feb5fb9060200160405180910390a3505050565b600034116105d05760405162461bcd60e51b815260206004820152602d60248201527f456c206d6f6e746f206465206c6120766163616e74652064656265207365722060448201526c36b0bcb7b910309031b2b9379760991b606482015260840161041f565b6040805160e081018252338152600060208083018281523484860190815260608501848152608086018a905260a0860189905260c086018890526001805486529385905295909320845181546001600160a01b03199081166001600160a01b0392831617835592518285018054909416911617909155915160028301559251600382018054939492939192909160ff19169083600481111561067457610674610f8d565b02179055506080820151600482019061068d9082611354565b5060a082015180516106a9916005840191602090910190610eaf565b5060c082015160068201906106be9082611354565b50506001546040513392507f260a7879b7dfbb8f14c0d6edf56e727d7be1309000001b56f1c769a32b6c9c86906106fc903490889088908890611414565b60405180910390a360018054906000610714836114b5565b9190505550505050565b600081815260208190526040902080546001600160a01b0316331480610750575060018101546001600160a01b031633145b6107b25760405162461bcd60e51b815260206004820152602d60248201527f536f6c6f206c61732070617274657320696e766f6c756372616461732070756560448201526c3232b7103234b9b83aba30b91760991b606482015260840161041f565b6001600382015460ff1660048111156107cd576107cd610f8d565b14806107f157506000600382015460ff1660048111156107ef576107ef610f8d565b145b6108515760405162461bcd60e51b815260206004820152602b60248201527f456c2074726162616a6f206e6f206573746120656e20756e2065737461646f2060448201526a3234b9b83aba30b136329760a91b606482015260840161041f565b6003818101805460ff19169091179055604051339083907f84a477df8a28a4276ca6dee4458a06c3015f30c477d9c949ede4e13ff8a552b490600090a35050565b600082815260208190526040902080546001600160a01b031633146109045760405162461bcd60e51b815260206004820152602260248201527f536f6c6f20656c20656d706c6561646f7220707565646520636f6e7472617461604482015261391760f11b606482015260840161041f565b6000600382015460ff16600481111561091f5761091f610f8d565b1461096c5760405162461bcd60e51b815260206004820152601b60248201527f4c6120766163616e7465206e6f206573746120616269657274612e0000000000604482015260640161041f565b6001600160a01b0382166109d35760405162461bcd60e51b815260206004820152602860248201527f4c6120646972656363696f6e2064656c20667265656c616e6365722065732069604482015267373b30b634b2309760c11b606482015260840161041f565b600281015460006064610a0960ff7f000000000000000000000000000000000000000000000000000000000000000016846114ce565b610a1391906114eb565b90506000610a21828461150d565b905060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168360405160006040518083038185875af1925050503d8060008114610a90576040519150601f19603f3d011682016040523d82523d6000602084013e610a95565b606091505b5050905080610aff5760405162461bcd60e51b815260206004820152603060248201527f46616c6c6f20616c207472616e736665726972206c6120636f6d6973696f6e2060448201526f3090363090383630ba30b337b936b09760811b606482015260840161041f565b600185810180546001600160a01b0319166001600160a01b0389169081179091556002870184905560038701805460ff1916909217909155604080518481526020810186905281518a927fef2a834100b23add4cacfb222e18eba66c9edca99791cf8b249c2a8c461bc60e928290030190a350505050505050565b336001600160a01b037f00000000000000000000000000000000000000000000000000000000000000001614610c035760405162461bcd60e51b815260206004820152602860248201527f536f6c6f20656c206172626974726f207075656465207265736f6c766572206460448201526734b9b83aba30b99760c11b606482015260840161041f565b60648160ff161115610c675760405162461bcd60e51b815260206004820152602760248201527f456c20706f7263656e74616a65206e6f20707565646520736572206d61796f726044820152661030901898181760c91b606482015260840161041f565b600082815260208190526040902060038082015460ff166004811115610c8f57610c8f610f8d565b14610cdc5760405162461bcd60e51b815260206004820152601e60248201527f456c2074726162616a6f206e6f206573746120656e20646973707574612e0000604482015260640161041f565b60038101805460ff19166004179055600281015460006064610d0160ff8616846114ce565b610d0b91906114eb565b90506000610d19828461150d565b9050600082118015610d37575060018401546001600160a01b031615155b15610db35760018401546040516000916001600160a01b03169084908381818185875af1925050503d8060008114610d8b576040519150601f19603f3d011682016040523d82523d6000602084013e610d90565b606091505b5050905080610db15760405162461bcd60e51b815260040161041f906112be565b505b8015610e6c5783546040516000916001600160a01b03169083908381818185875af1925050503d8060008114610e05576040519150601f19603f3d011682016040523d82523d6000602084013e610e0a565b606091505b5050905080610e6a5760405162461bcd60e51b815260206004820152602660248201527f46616c6c6f20616c20656e7669617220656c20457468657220616c20656d706c60448201526532b0b237b91760d11b606482015260840161041f565b505b604080518381526020810183905287917f959dc01840aa516bf9407cffa45326c7b6821c48feff7b91eb0c743c8f460fd6910160405180910390a2505050505050565b828054828255906000526020600020908101928215610ef5579160200282015b82811115610ef55782518290610ee59082611354565b5091602001919060010190610ecf565b50610f01929150610f05565b5090565b80821115610f01576000610f198282610f22565b50600101610f05565b508054610f2e90611284565b6000825580601f10610f3e575050565b601f016020900490600052602060002090810190610f5c9190610f5f565b50565b5b80821115610f015760008155600101610f60565b600060208284031215610f8657600080fd5b5035919050565b634e487b7160e01b600052602160045260246000fd5b6000815180845260005b81811015610fc957602081850181015186830182015201610fad565b506000602082860101526020601f19601f83011685010191505092915050565b6001600160a01b038781168252861660208201526040810185905260006005851061102457634e487b7160e01b600052602160045260246000fd5b84606083015260c0608083015261103e60c0830185610fa3565b82810360a08401526110508185610fa3565b9998505050505050505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff8111828210171561109c5761109c61105d565b604052919050565b600082601f8301126110b557600080fd5b813567ffffffffffffffff8111156110cf576110cf61105d565b6110e2601f8201601f1916602001611073565b8181528460208386010111156110f757600080fd5b816020850160208301376000918101602001919091529392505050565b60008060006060848603121561112957600080fd5b833567ffffffffffffffff8082111561114157600080fd5b61114d878388016110a4565b945060209150818601358181111561116457600080fd5b8601601f8101881361117557600080fd5b8035828111156111875761118761105d565b8060051b611196858201611073565b918252828101850191858101908b8411156111b057600080fd5b86850192505b838310156111ec578235868111156111ce5760008081fd5b6111dc8d89838901016110a4565b83525091860191908601906111b6565b975050505060408701359250508082111561120657600080fd5b50611213868287016110a4565b9150509250925092565b6000806040838503121561123057600080fd5b8235915060208301356001600160a01b038116811461124e57600080fd5b809150509250929050565b6000806040838503121561126c57600080fd5b82359150602083013560ff8116811461124e57600080fd5b600181811c9082168061129857607f821691505b6020821081036112b857634e487b7160e01b600052602260045260246000fd5b50919050565b60208082526027908201527f46616c6c6f20616c20656e7669617220656c20457468657220616c20667265656040820152663630b731b2b91760c91b606082015260800190565b601f82111561134f57600081815260208120601f850160051c8101602086101561132c5750805b601f850160051c820191505b8181101561134b57828155600101611338565b5050505b505050565b815167ffffffffffffffff81111561136e5761136e61105d565b6113828161137c8454611284565b84611305565b602080601f8311600181146113b7576000841561139f5750858301515b600019600386901b1c1916600185901b17855561134b565b600085815260208120601f198616915b828110156113e6578886015182559484019460019091019084016113c7565b50858210156114045787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b8481526000602060808184015261142e6080840187610fa3565b8381036040850152855180825282820190600581901b8301840184890160005b8381101561147c57601f1986840301855261146a838351610fa3565b9487019492509086019060010161144e565b505086810360608801526114908189610fa3565b9b9a5050505050505050505050565b634e487b7160e01b600052601160045260246000fd5b6000600182016114c7576114c761149f565b5060010190565b80820281158282048414176114e5576114e561149f565b92915050565b60008261150857634e487b7160e01b600052601260045260246000fd5b500490565b818103818111156114e5576114e561149f56fea264697066735822122009cbd297d14577b554b0805637aae160cc6246a423ed0943757032651ba818a964736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106100915760003560e01c8063b0c2aa5e11610059578063b0c2aa5e14610172578063b0f26f1814610196578063d575fe64146101b6578063e55e4211146101fc578063fe25e00a1461021c57600080fd5b8063180aedf3146100965780634d68282f146100d15780634df8ccb1146100f35780639fb048c81461013f578063a5c1674e14610152575b600080fd5b3480156100a257600080fd5b506100b66100b1366004610f74565b610250565b6040516100c896959493929190610fe9565b60405180910390f35b3480156100dd57600080fd5b506100f16100ec366004610f74565b6103a8565b005b3480156100ff57600080fd5b506101277f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020016100c8565b6100f161014d366004611114565b61056a565b34801561015e57600080fd5b506100f161016d366004610f74565b61071e565b34801561017e57600080fd5b5061018860015481565b6040519081526020016100c8565b3480156101a257600080fd5b506100f16101b136600461121d565b610892565b3480156101c257600080fd5b506101ea7f000000000000000000000000000000000000000000000000000000000000000081565b60405160ff90911681526020016100c8565b34801561020857600080fd5b506100f1610217366004611259565b610b7a565b34801561022857600080fd5b506101277f000000000000000000000000000000000000000000000000000000000000000081565b600060208190529081526040902080546001820154600283015460038401546004850180546001600160a01b03958616969490951694929360ff9092169261029790611284565b80601f01602080910402602001604051908101604052809291908181526020018280546102c390611284565b80156103105780601f106102e557610100808354040283529160200191610310565b820191906000526020600020905b8154815290600101906020018083116102f357829003601f168201915b50505050509080600601805461032590611284565b80601f016020809104026020016040519081016040528092919081815260200182805461035190611284565b801561039e5780601f106103735761010080835404028352916020019161039e565b820191906000526020600020905b81548152906001019060200180831161038157829003601f168201915b5050505050905086565b600081815260208190526040902080546001600160a01b031633146104285760405162461bcd60e51b815260206004820152602b60248201527f536f6c6f20656c20656d706c6561646f72207075656465206c6962657261722060448201526a3637b9903337b73237b99760a91b60648201526084015b60405180910390fd5b6001600382015460ff16600481111561044357610443610f8d565b146104905760405162461bcd60e51b815260206004820152601f60248201527f456c2074726162616a6f206e6f206573746120656e2070726f677265736f2e00604482015260640161041f565b60038101805460ff191660029081179091556001820154908201546040516000926001600160a01b031691908381818185875af1925050503d80600081146104f4576040519150601f19603f3d011682016040523d82523d6000602084013e6104f9565b606091505b505090508061051a5760405162461bcd60e51b815260040161041f906112be565b600182015460028301546040519081526001600160a01b039091169084907f6e3c6096795c8298a218b2cfb8bde42726ff7c9a3d27b4d3ba41ab7f74feb5fb9060200160405180910390a3505050565b600034116105d05760405162461bcd60e51b815260206004820152602d60248201527f456c206d6f6e746f206465206c6120766163616e74652064656265207365722060448201526c36b0bcb7b910309031b2b9379760991b606482015260840161041f565b6040805160e081018252338152600060208083018281523484860190815260608501848152608086018a905260a0860189905260c086018890526001805486529385905295909320845181546001600160a01b03199081166001600160a01b0392831617835592518285018054909416911617909155915160028301559251600382018054939492939192909160ff19169083600481111561067457610674610f8d565b02179055506080820151600482019061068d9082611354565b5060a082015180516106a9916005840191602090910190610eaf565b5060c082015160068201906106be9082611354565b50506001546040513392507f260a7879b7dfbb8f14c0d6edf56e727d7be1309000001b56f1c769a32b6c9c86906106fc903490889088908890611414565b60405180910390a360018054906000610714836114b5565b9190505550505050565b600081815260208190526040902080546001600160a01b0316331480610750575060018101546001600160a01b031633145b6107b25760405162461bcd60e51b815260206004820152602d60248201527f536f6c6f206c61732070617274657320696e766f6c756372616461732070756560448201526c3232b7103234b9b83aba30b91760991b606482015260840161041f565b6001600382015460ff1660048111156107cd576107cd610f8d565b14806107f157506000600382015460ff1660048111156107ef576107ef610f8d565b145b6108515760405162461bcd60e51b815260206004820152602b60248201527f456c2074726162616a6f206e6f206573746120656e20756e2065737461646f2060448201526a3234b9b83aba30b136329760a91b606482015260840161041f565b6003818101805460ff19169091179055604051339083907f84a477df8a28a4276ca6dee4458a06c3015f30c477d9c949ede4e13ff8a552b490600090a35050565b600082815260208190526040902080546001600160a01b031633146109045760405162461bcd60e51b815260206004820152602260248201527f536f6c6f20656c20656d706c6561646f7220707565646520636f6e7472617461604482015261391760f11b606482015260840161041f565b6000600382015460ff16600481111561091f5761091f610f8d565b1461096c5760405162461bcd60e51b815260206004820152601b60248201527f4c6120766163616e7465206e6f206573746120616269657274612e0000000000604482015260640161041f565b6001600160a01b0382166109d35760405162461bcd60e51b815260206004820152602860248201527f4c6120646972656363696f6e2064656c20667265656c616e6365722065732069604482015267373b30b634b2309760c11b606482015260840161041f565b600281015460006064610a0960ff7f000000000000000000000000000000000000000000000000000000000000000016846114ce565b610a1391906114eb565b90506000610a21828461150d565b905060007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03168360405160006040518083038185875af1925050503d8060008114610a90576040519150601f19603f3d011682016040523d82523d6000602084013e610a95565b606091505b5050905080610aff5760405162461bcd60e51b815260206004820152603060248201527f46616c6c6f20616c207472616e736665726972206c6120636f6d6973696f6e2060448201526f3090363090383630ba30b337b936b09760811b606482015260840161041f565b600185810180546001600160a01b0319166001600160a01b0389169081179091556002870184905560038701805460ff1916909217909155604080518481526020810186905281518a927fef2a834100b23add4cacfb222e18eba66c9edca99791cf8b249c2a8c461bc60e928290030190a350505050505050565b336001600160a01b037f00000000000000000000000000000000000000000000000000000000000000001614610c035760405162461bcd60e51b815260206004820152602860248201527f536f6c6f20656c206172626974726f207075656465207265736f6c766572206460448201526734b9b83aba30b99760c11b606482015260840161041f565b60648160ff161115610c675760405162461bcd60e51b815260206004820152602760248201527f456c20706f7263656e74616a65206e6f20707565646520736572206d61796f726044820152661030901898181760c91b606482015260840161041f565b600082815260208190526040902060038082015460ff166004811115610c8f57610c8f610f8d565b14610cdc5760405162461bcd60e51b815260206004820152601e60248201527f456c2074726162616a6f206e6f206573746120656e20646973707574612e0000604482015260640161041f565b60038101805460ff19166004179055600281015460006064610d0160ff8616846114ce565b610d0b91906114eb565b90506000610d19828461150d565b9050600082118015610d37575060018401546001600160a01b031615155b15610db35760018401546040516000916001600160a01b03169084908381818185875af1925050503d8060008114610d8b576040519150601f19603f3d011682016040523d82523d6000602084013e610d90565b606091505b5050905080610db15760405162461bcd60e51b815260040161041f906112be565b505b8015610e6c5783546040516000916001600160a01b03169083908381818185875af1925050503d8060008114610e05576040519150601f19603f3d011682016040523d82523d6000602084013e610e0a565b606091505b5050905080610e6a5760405162461bcd60e51b815260206004820152602660248201527f46616c6c6f20616c20656e7669617220656c20457468657220616c20656d706c60448201526532b0b237b91760d11b606482015260840161041f565b505b604080518381526020810183905287917f959dc01840aa516bf9407cffa45326c7b6821c48feff7b91eb0c743c8f460fd6910160405180910390a2505050505050565b828054828255906000526020600020908101928215610ef5579160200282015b82811115610ef55782518290610ee59082611354565b5091602001919060010190610ecf565b50610f01929150610f05565b5090565b80821115610f01576000610f198282610f22565b50600101610f05565b508054610f2e90611284565b6000825580601f10610f3e575050565b601f016020900490600052602060002090810190610f5c9190610f5f565b50565b5b80821115610f015760008155600101610f60565b600060208284031215610f8657600080fd5b5035919050565b634e487b7160e01b600052602160045260246000fd5b6000815180845260005b81811015610fc957602081850181015186830182015201610fad565b506000602082860101526020601f19601f83011685010191505092915050565b6001600160a01b038781168252861660208201526040810185905260006005851061102457634e487b7160e01b600052602160045260246000fd5b84606083015260c0608083015261103e60c0830185610fa3565b82810360a08401526110508185610fa3565b9998505050505050505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff8111828210171561109c5761109c61105d565b604052919050565b600082601f8301126110b557600080fd5b813567ffffffffffffffff8111156110cf576110cf61105d565b6110e2601f8201601f1916602001611073565b8181528460208386010111156110f757600080fd5b816020850160208301376000918101602001919091529392505050565b60008060006060848603121561112957600080fd5b833567ffffffffffffffff8082111561114157600080fd5b61114d878388016110a4565b945060209150818601358181111561116457600080fd5b8601601f8101881361117557600080fd5b8035828111156111875761118761105d565b8060051b611196858201611073565b918252828101850191858101908b8411156111b057600080fd5b86850192505b838310156111ec578235868111156111ce5760008081fd5b6111dc8d89838901016110a4565b83525091860191908601906111b6565b975050505060408701359250508082111561120657600080fd5b50611213868287016110a4565b9150509250925092565b6000806040838503121561123057600080fd5b8235915060208301356001600160a01b038116811461124e57600080fd5b809150509250929050565b6000806040838503121561126c57600080fd5b82359150602083013560ff8116811461124e57600080fd5b600181811c9082168061129857607f821691505b6020821081036112b857634e487b7160e01b600052602260045260246000fd5b50919050565b60208082526027908201527f46616c6c6f20616c20656e7669617220656c20457468657220616c20667265656040820152663630b731b2b91760c91b606082015260800190565b601f82111561134f57600081815260208120601f850160051c8101602086101561132c5750805b601f850160051c820191505b8181101561134b57828155600101611338565b5050505b505050565b815167ffffffffffffffff81111561136e5761136e61105d565b6113828161137c8454611284565b84611305565b602080601f8311600181146113b7576000841561139f5750858301515b600019600386901b1c1916600185901b17855561134b565b600085815260208120601f198616915b828110156113e6578886015182559484019460019091019084016113c7565b50858210156114045787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b8481526000602060808184015261142e6080840187610fa3565b8381036040850152855180825282820190600581901b8301840184890160005b8381101561147c57601f1986840301855261146a838351610fa3565b9487019492509086019060010161144e565b505086810360608801526114908189610fa3565b9b9a5050505050505050505050565b634e487b7160e01b600052601160045260246000fd5b6000600182016114c7576114c761149f565b5060010190565b80820281158282048414176114e5576114e561149f565b92915050565b60008261150857634e487b7160e01b600052601260045260246000fd5b500490565b818103818111156114e5576114e561149f56fea264697066735822122009cbd297d14577b554b0805637aae160cc6246a423ed0943757032651ba818a964736f6c63430008140033",
+  "devdoc": {
+    "details": "Este contrato gestiona un depósito en garantía (escrow) para trabajos entre un empleador y un freelancer, con un árbitro y una comisión para la plataforma.",
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "details": "El constructor no cambia. Define los roles al desplegar el contrato."
+      },
+      "createVacancy(string,string[],string)": {
+        "details": "PASO 2: Nueva función para crear una vacante (antes createJob). El empleador deposita el monto bruto. No se asigna freelancer ni se cobra comisión aún."
+      },
+      "hireFreelancer(uint256,address)": {
+        "details": "PASO 3: Nueva función para que el empleador contrate a un freelancer para una vacante abierta. En este paso se cobra la comisión de la plataforma.",
+        "params": {
+          "freelancerAddress": "La dirección del freelancer que se va a contratar.",
+          "jobId": "El ID de la vacante a la que se asignará el freelancer."
+        }
+      },
+      "raiseDispute(uint256)": {
+        "details": "Inicia una disputa. Ahora se puede disputar también un trabajo en estado 'Open'."
+      },
+      "releaseFunds(uint256)": {
+        "details": "Libera los fondos (netos) al freelancer. La lógica interna no cambia."
+      },
+      "resolveDispute(uint256,uint8)": {
+        "details": "Resuelve una disputa. La lógica opera sobre el monto en escrow en ese momento."
+      }
+    },
+    "title": "JobEscrow",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 30,
+        "contract": "contracts/JobScrow.sol:JobEscrow",
+        "label": "jobs",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_struct(Job)25_storage)"
+      },
+      {
+        "astId": 33,
+        "contract": "contracts/JobScrow.sol:JobEscrow",
+        "label": "nextJobId",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_string_storage)dyn_storage": {
+        "base": "t_string_storage",
+        "encoding": "dynamic_array",
+        "label": "string[]",
+        "numberOfBytes": "32"
+      },
+      "t_enum(JobState)8": {
+        "encoding": "inplace",
+        "label": "enum JobEscrow.JobState",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_uint256,t_struct(Job)25_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct JobEscrow.Job)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Job)25_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Job)25_storage": {
+        "encoding": "inplace",
+        "label": "struct JobEscrow.Job",
+        "members": [
+          {
+            "astId": 10,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "employer",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 12,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "freelancer",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 14,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "amount",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 17,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "state",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_enum(JobState)8"
+          },
+          {
+            "astId": 19,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "description",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 22,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "skills",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_array(t_string_storage)dyn_storage"
+          },
+          {
+            "astId": 24,
+            "contract": "contracts/JobScrow.sol:JobEscrow",
+            "label": "imageURI",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_string_storage"
+          }
+        ],
+        "numberOfBytes": "224"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

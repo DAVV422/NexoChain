@@ -5,9 +5,9 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  31337: {
+  421614: {
     FreelancerNFT: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0xf951009DFB9797d63FFD950D78566C0CcF15974f",
       abi: [
         {
           inputs: [],
@@ -622,10 +622,10 @@ const deployedContracts = {
         renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
         transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
       },
-      deployedOnBlock: 3,
+      deployedOnBlock: 180233555,
     },
     JobEscrow: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x2ebBC9D15FDBfD09A308A7A9231c202659a99ab3",
       abi: [
         {
           inputs: [
@@ -769,6 +769,24 @@ const deployedContracts = {
               name: "amount",
               type: "uint256",
             },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string[]",
+              name: "skills",
+              type: "string[]",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "imageURI",
+              type: "string",
+            },
           ],
           name: "VacancyCreated",
           type: "event",
@@ -800,7 +818,23 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
+          inputs: [
+            {
+              internalType: "string",
+              name: "_description",
+              type: "string",
+            },
+            {
+              internalType: "string[]",
+              name: "_skills",
+              type: "string[]",
+            },
+            {
+              internalType: "string",
+              name: "_imageURI",
+              type: "string",
+            },
+          ],
           name: "createVacancy",
           outputs: [],
           stateMutability: "payable",
@@ -853,6 +887,16 @@ const deployedContracts = {
               internalType: "enum JobEscrow.JobState",
               name: "state",
               type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "imageURI",
+              type: "string",
             },
           ],
           stateMutability: "view",
@@ -930,7 +974,7 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {},
-      deployedOnBlock: 1,
+      deployedOnBlock: 180233538,
     },
   },
 } as const;
